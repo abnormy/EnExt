@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebFramework;
 
 namespace HttpWebService
 {
@@ -43,7 +44,10 @@ namespace HttpWebService
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            BundleTable.Bundles.RegisterTemplateBundles();
+            BundleTable.Bundles.RegisterTemplateBundles(); 
+            
+            var config = GlobalConfiguration.Configuration;
+            config.Formatters.Insert(0, new JsonpMediaTypeFormatter());
         }
     }
 }
