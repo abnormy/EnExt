@@ -27,7 +27,11 @@
                 expect(0).toEqual(0);
             });
         });
-
+		
+        jasmine.TeamcityReporter.prototype.reportRunnerResults = function () {
+            console.log("##jasmine.reportRunnerResults");
+        };
+ 
         jasmine.getEnv().addReporter(new jasmine.TeamcityReporter());
         jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
         jasmine.getEnv().execute();
