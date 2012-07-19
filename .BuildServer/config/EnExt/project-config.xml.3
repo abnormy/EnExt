@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "../project-config.dtd">
+
+<project id="project2">
+  <parameters />
+  <build-type id="bt2" name="Master">
+    <description>Master build CI</description>
+    <settings>
+      <parameters />
+      <build-runners>
+        <runner id="RUNNER_1" name="JS unit tests" type="simpleRunner">
+          <parameters>
+            <param name="command.executable" value="%teamcity.build.workingDir%\lib\phantomjs\phantomjs" />
+            <param name="command.parameters" value="%teamcity.build.workingDir%\Tests\js\runner.js %teamcity.build.workingDir%\Tests\js\x.htm" />
+          </parameters>
+        </runner>
+      </build-runners>
+      <vcs-settings checkout-mode="ON_SERVER" labeling-type="NONE" labeling-pattern="build-%system.build.number%">
+        <vcs-entry-ref root-id="1" set-label="false" />
+      </vcs-settings>
+      <requirements />
+      <build-triggers>
+        <build-trigger id="vcsTrigger" type="vcsTrigger">
+          <parameters>
+            <param name="quietPeriodMode" value="DO_NOT_USE" />
+          </parameters>
+        </build-trigger>
+      </build-triggers>
+      <cleanup />
+    </settings>
+  </build-type>
+</project>
+
