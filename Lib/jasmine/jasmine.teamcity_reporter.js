@@ -17,7 +17,9 @@
     };
 
     TeamcityReporter.prototype = {
-        reportRunnerResults: function(runner) { },
+        reportRunnerResults: function(runner) {
+			console.log("##jasmine.reportRunnerResults");
+		},
 
         reportRunnerStarting: function(runner) { },
 
@@ -42,7 +44,7 @@
                     outerThis.log("##teamcity[testStarted name='" + outerThis.escapeTeamcityString(spec.description) + "' captureStandardOutput='true']");
                     var specResultFn = function(result){
                         if (!result.passed_) {
-                            outerThis.log("##teamcity[testFailed name='" + outerThis.escapeTeamcityString(spec.description) + "' message='|[FAILED|]' details='" + outerThis.escapeTeamcityString(result.trace.stack) + "']");
+                            outerThis.log("##teamcity[testFailed name='" + outerThis.escapeTeamcityString(spec.description) + "' message='" + result.message + "' details='" + outerThis.escapeTeamcityString(result.trace.stack) + "']");
                         }
                     };
 
